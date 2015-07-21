@@ -1,0 +1,73 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+.list-left-align-middle {
+  display: table;
+  text-align: left;
+  margin: auto;
+}
+
+#word-counter-input {
+  height: 400px;
+}
+
+.panel-heading {
+  cursor: pointer;  
+}
+
+.word-panel {
+  background: lightgreen;
+  padding: 20px;
+}
+
+.word-length {
+  display: table;
+  width: 100%;
+}
+
+.word-length li {
+  display: table-row;
+  width: 100%;
+  position: relative;
+  margin: 1em 0;
+  height: 30px;
+}
+
+.word-length li:nth-child(even) div {
+  background: #f5f5f5;
+}
+
+.word-length li div {
+  display: table-cell;
+  border-bottom: 1px solid #e3e3e3;
+  vertical-align: middle;
+  padding: 10px;
+}
+
+.word-length li .bar span {
+  height: 30px;
+  background: lightgreen;
+  display: block;
+}
+
+.word-length li .bar-label {
+  width: 5%;
+}
+
+.word-length li .bar-value {
+  width: 10%;
+  text-align: right;
+}

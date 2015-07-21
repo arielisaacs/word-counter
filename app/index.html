@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>WordCounter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    
+  </head>
+  <body>
+   
+    <div class="container">     
+      <div class="header">
+        <h3 class="text-muted">WordCounter</h3>
+      </div>
+      
+      <div id="word-counter">
+        <div class="words-form clearfix">
+          <div class="form-group panel panel-default">
+            <div class="panel-heading clearfix">
+              <h5 class="word-panel-heading pull-left">Paste or type text below to begin.</h5>
+             </div>
+             <div class="panel-body" style="padding:0;">
+               <textarea id="word-counter-input" class="form-control"></textarea>
+             </div>
+          </div>
+        </div>
+        
+        <div id="words-results" class="words-results">
+
+        </div>
+      </div>    
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="scripts/lib/WordCounter.js"></script>
+    <script src="scripts/models/WordCounterViewModel.js"></script>
+    <script src="scripts/views/WordCounterView.js"></script>
+    
+    <script id="results-template" type="text/x-handlebars-template">
+      <div class="row text-center">
+        <div class="words-count col-md-4" style="margin-bottom:20px;">
+          <div class="word-panel">
+            <h4>Words:</h4>
+            <p id="words-count">{{wordCount}}</p>
+          </div>
+        </div>
+        <div class="sentence-count col-md-4">
+          <div class="word-panel">
+            <h4>Sentences:</h4>
+            <p id="sentence-count">{{sentenceCount}}</p>
+          </div>
+        </div>
+        <div class="paragraph-count col-md-4">
+          <div class="word-panel">
+            <h4>Paragraphs:</h4>
+            <p id="paragraph-count">{{paragraphCount}}</p>
+          </div>
+        </div>
+      </div>
+        
+      <div class="row">
+        <div class="bigrams-count col-md-12">
+          <div class="well">
+            <h4 class="text-center">Most popular Bigrams:</h4>
+            <ol id="bigram-list" class="list-left-align-middle">
+              {{#each bigrams}}
+                <li>{{bigram}} ({{occurrences}})</li>
+              {{/each}}
+            </ol>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="word-length-distribution col-md-12">
+          <h4 class="text-center">Word Length Distribution</h4>
+          <ul id="word-length" class="word-length list-unstyled">
+            {{#each wordLengthDist}}
+              <li>
+                <div class="bar-label">{{wordLength}}</div>
+                <div class="bar"><span style="width:{{percent}}%"></span></div>
+                <div class="bar-value">{{percent}}% ({{count}})</div>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/javascript">
+      $(function () {
+        
+        var view = new app.views.WordCounterView('#word-counter', new app.models.WordCounterViewModel());
+        view.init();
+        
+      });  
+    </script>
+    
+  </body>
+</html>
